@@ -1,3 +1,4 @@
+/* General Reset */
 * {
   margin: 0;
   padding: 0;
@@ -5,6 +6,7 @@
   font-family: 'Arial', sans-serif;
 }
 
+/* Body for Index (light, approachable) */
 body {
   background-color: #f5f5f5;
   color: #333;
@@ -15,11 +17,23 @@ body {
   padding: 20px;
 }
 
+/* Body for Game (brownish theme) */
 body.game {
-  background-color: #8b6f47; 
+  background-color: #8b6f47; /* Warm brown */
   color: #fff;
 }
 
+/* Burro Shouted Animation */
+body.game.burro-shouted {
+  animation: flashBackground 3s ease;
+}
+
+@keyframes flashBackground {
+  0%, 100% { background-color: #8b6f47; }
+  50% { background-color: #d9534f; }
+}
+
+/* Container for both pages */
 .container {
   background-color: #fff;
   padding: 20px;
@@ -31,11 +45,12 @@ body.game {
 }
 
 body.game .container {
-  background-color: #a68a64; 
+  background-color: #a68a64; /* Lighter brown for game */
 }
 
+/* Headings */
 h1 {
-  color: #5c4033; 
+  color: #5c4033; /* Darker brown */
   margin-bottom: 20px;
   font-size: 2rem;
 }
@@ -44,17 +59,18 @@ body.game h1 {
   color: #fff;
 }
 
+/* Inputs and Buttons */
 input[type="text"] {
   width: 100%;
   padding: 10px;
   margin: 10px 0;
-  border: 2px solid #d4a373; 
+  border: 2px solid #d4a373; /* Soft brown border */
   border-radius: 8px;
   font-size: 1rem;
 }
 
 button {
-  background-color: #d4a373; 
+  background-color: #d4a373; /* Warm brown */
   color: #fff;
   padding: 12px 20px;
   border: none;
@@ -66,7 +82,7 @@ button {
 }
 
 button:hover {
-  background-color: #b8860b; 
+  background-color: #b8860b; /* Golden hover */
 }
 
 button:disabled {
@@ -74,26 +90,45 @@ button:disabled {
   cursor: not-allowed;
 }
 
+/* Error Message */
 #error, #status {
-  color: #d9534f; 
+  color: #d9534f; /* Red for errors */
   margin: 10px 0;
   font-size: 0.9rem;
 }
 
 body.game #error, body.game #status {
-  color: #ffcccb; 
+  color: #ffcccb; /* Light pink for contrast */
 }
 
+/* Burro Alert */
+.burro-alert {
+  display: none;
+  background-color: #d9534f;
+  color: #fff;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.burro-alert.active {
+  display: block;
+}
+
+/* Rules Section */
 .rules {
   margin-top: 20px;
   text-align: left;
-  background-color: #f9f1e9; 
+  background-color: #f9f1e9; /* Light cream for contrast */
   padding: 15px;
   border-radius: 8px;
 }
 
 body.game .rules {
-  background-color: #8b6f47; 
+  background-color: #8b6f47; /* Darker brown in game */
 }
 
 .rules h2 {
@@ -121,6 +156,7 @@ body.game .rules li {
   color: #fff;
 }
 
+/* Modal for Game Rules */
 .modal {
   display: none;
   position: fixed;
@@ -174,6 +210,7 @@ body.game .rules li {
   color: #b8860b;
 }
 
+/* Game-Specific Styles */
 #players, #cards {
   margin: 20px 0;
   text-align: left;
@@ -186,7 +223,7 @@ body.game .rules li {
 }
 
 .player {
-  background-color: #8b6f47; 
+  background-color: #8b6f47; /* Darker brown */
   padding: 10px;
   margin: 5px 0;
   border-radius: 8px;
@@ -198,6 +235,7 @@ body.game .rules li {
   opacity: 0.6;
 }
 
+/* Card Styles */
 .card-container {
   display: inline-block;
   margin: 10px;
@@ -230,9 +268,10 @@ body.game .rules li {
 }
 
 .new-card {
-  border-color: #28a745; 
+  border-color: #28a745; /* Green for new card */
 }
 
+/* Responsive Design */
 @media (max-width: 600px) {
   .container {
     padding: 15px;
@@ -276,6 +315,10 @@ body.game .rules li {
 
   .card-container {
     margin: 5px;
+  }
+
+  .burro-alert {
+    font-size: 1rem;
   }
 }
 

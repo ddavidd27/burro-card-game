@@ -182,6 +182,25 @@ function connectWebSocketForGame() {
         console.error('burroButton not found in DOM');
       }
     }
+    if (data.type === 'firstBurroShouted') {
+      console.log('First Burro shouted by:', data.playerId);
+      const body = document.body;
+      const burroAlert = document.getElementById('burroAlert');
+      if (body && burroAlert) {
+        body.classList.add('burro-shouted');
+        burroAlert.textContent = 'Burro Shouted! Hurry!';
+        burroAlert.classList.add('active');
+        const passButtons = document.getElementsByClassName('card-pass-button');
+        for (let btn of passButtons) {
+          btn.disabled = true;
+        }
+        setTimeout(() => {
+          body.classList.remove('burro-shouted');
+          burroAlert.classList.remove('active');
+          burroAlert.textContent = '';
+        }, 3000);
+      }
+    }
     if (data.type === 'scoreUpdate') {
       data.players.forEach(p => {
         gameState.players[p.id] = { name: p.name || 'Player', score: p.score, eliminated: p.eliminated };
@@ -330,6 +349,7 @@ function updateGameState(data) {
 
   const startButton = document.getElementById('startButton');
   if (startButton) {
-    startButton.disabled = data.started || data.players.filter(p => !p.eliminated).length < 2 || playerId !== data.creatorId;
+    startButton.disabled = data.start
+System: ed || data.players.filter(p => !p.eliminated).length < 2 || playerId !== data.creatorId;
   }
 }

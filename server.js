@@ -68,6 +68,7 @@ wss.on('connection', (ws) => {
         reactionPlayers: new Set(),
         creatorId: null,
         locked: false,
+        firstShout: false,
       };
       ws.send(JSON.stringify({ type: 'roomCreated', roomNumber: newRoomNumber }));
     }
@@ -91,14 +92,14 @@ wss.on('connection', (ws) => {
       if (existingPlayer) {
         playerId = clientPlayerId;
         existingPlayer.ws = ws;
-        existingPlayer.name = playerName;
-        console.log(`Player reconnected: ID=${playerId}, Name=${playerName}, Room=${roomNumber}`);
+        existingPlayer.name = playerName || existingPlayer.name || 'Player';
+        console.log(`Player reconnected: ID=${playerId}, Name=${existingPlayer.name}, Room=${roomNumber}`);
       } else {
         playerId = clientPlayerId || `${roomNumber}-${Date.now()}`;
         rooms[roomNumber].players.push({
           id: playerId,
           ws,
-          name: playerName,
+          name: playerName || 'Player',
           cards: [],
           pendingCard: null,
           score: '',
@@ -118,7 +119,7 @@ wss.on('connection', (ws) => {
       broadcastToRoom(roomNumber, {
         type: 'playerJoined',
         playerId,
-        playerName,
+        playerName: rooms[roomNumber].players.find(p => p.id === playerId).name,
         players: rooms[roomNumber].players.map(p => ({
           id: p.id,
           name: p.name,
@@ -207,6 +208,7 @@ function startGame(roomNumber) {
   room.currentPlayerIndex = 0;
   room.burroShouted = false;
   room.reactionPlayers = new Set();
+  room.firstShout = false;
 
   const activePlayers = room.players.filter(p => !p.eliminated);
   const numPlayers = activePlayers.length;
@@ -237,7 +239,7 @@ function startGame(roomNumber) {
 
   room.deck = dealDeck;
 
-  console.log('Dealt cards:', activePlayers.map(p => ({ id: p.id, cards: p.cards })));
+  console.log('Dealt cards:', activePlayers.map(p => ({ id: p.id, name: p.name, cards: p.cards })));
 
   for (let player of room.players) {
     if (player.ws.readyState === WebSocket.OPEN) {
@@ -382,6 +384,15 @@ function handleShoutBurro(roomNumber, playerId) {
   if (!room.burroShouted) {
     console.log(`Shout ignored for ${playerId}: No burro available`);
     return;
+ épa
+  }
+
+  if (!room.firstShout) {
+    room.firstShout = true;
+    broadcastToRoom(roomNumber, {
+      type: 'firstBurroShouted',
+      playerId,
+    });
   }
 
   const activePlayers = room.players.filter(p => !p.eliminated);
@@ -462,6 +473,7 @@ function handleShoutBurro(roomNumber, playerId) {
     }
     room.reactionPlayers = new Set();
     room.burroShouted = false;
+    room.firstShout = false;
   }
 }
 
@@ -469,6 +481,7 @@ function startNextRound(roomNumber) {
   const room = rooms[roomNumber];
   room.burroShouted = false;
   room.reactionPlayers = new Set();
+  room.firstShout = false;
   startGame(roomNumber);
 }
 
