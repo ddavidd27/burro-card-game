@@ -32,7 +32,7 @@ function connectWebSocket(message) {
     ws.send(JSON.stringify(message));
     return;
   }
-  ws = new WebSocket('ws://localhost:3000');
+  ws = new WebSocket('https://s25-websocket-ddavidd27-1.onrender.com');
 
   ws.onopen = () => {
     console.log('WebSocket opened, sending:', message);
@@ -143,7 +143,7 @@ function connectWebSocketForGame() {
     console.log('Game WebSocket already open');
     return;
   }
-  ws = new WebSocket('ws://localhost:3000');
+  ws = new WebSocket('https://s25-websocket-ddavidd27-1.onrender.com');
 
   ws.onopen = () => {
     const playerName = localStorage.getItem('playerName') || 'Player';
