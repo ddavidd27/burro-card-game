@@ -6,7 +6,7 @@ A fun, multiplayer card game built with WebSockets where 2–10 players compete 
 
 Scan the QR code or visit the game:
 
-![QR Code](images/qr_code.png)
+![QR Code](/qr_code.png)
 
 **URL**: https://s25-websocket-ddavidd27.onrender.com
 
