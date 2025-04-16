@@ -1,0 +1,296 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background-color: #f5f5f5;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+body.game {
+  background-color: #8b6f47; 
+  color: #fff;
+}
+
+.container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+}
+
+body.game .container {
+  background-color: #a68a64; 
+}
+
+h1 {
+  color: #5c4033; 
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+body.game h1 {
+  color: #fff;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 2px solid #d4a373; 
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+button {
+  background-color: #d4a373; 
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin: 10px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #b8860b; 
+}
+
+button:disabled {
+  background-color: #a9a9a9;
+  cursor: not-allowed;
+}
+
+#error, #status {
+  color: #d9534f; 
+  margin: 10px 0;
+  font-size: 0.9rem;
+}
+
+body.game #error, body.game #status {
+  color: #ffcccb; 
+}
+
+.rules {
+  margin-top: 20px;
+  text-align: left;
+  background-color: #f9f1e9; 
+  padding: 15px;
+  border-radius: 8px;
+}
+
+body.game .rules {
+  background-color: #8b6f47; 
+}
+
+.rules h2 {
+  color: #5c4033;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+body.game .rules h2 {
+  color: #fff;
+}
+
+.rules ul {
+  list-style: disc;
+  padding-left: 20px;
+}
+
+.rules li {
+  margin: 8px 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+body.game .rules li {
+  color: #fff;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #a68a64;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 90%;
+  text-align: left;
+  position: relative;
+}
+
+.modal-content h2 {
+  color: #fff;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.modal-content ul {
+  list-style: disc;
+  padding-left: 20px;
+}
+
+.modal-content li {
+  color: #fff;
+  margin: 8px 0;
+  font-size: 1rem;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #b8860b;
+}
+
+#players, #cards {
+  margin: 20px 0;
+  text-align: left;
+}
+
+#players h2, #cards h2 {
+  color: #fff;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.player {
+  background-color: #8b6f47; 
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.eliminated {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.card-container {
+  display: inline-block;
+  margin: 10px;
+  text-align: center;
+}
+
+.card {
+  width: 100px;
+  height: 140px;
+  background-size: cover;
+  background-position: center;
+  border: 3px solid #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.card-pass-button {
+  background-color: #d4a373;
+  margin-top: 5px;
+  padding: 8px;
+  font-size: 0.9rem;
+}
+
+.card-pass-button:hover {
+  background-color: #b8860b;
+}
+
+.card-pass-button:disabled {
+  background-color: #a9a9a9;
+}
+
+.new-card {
+  border-color: #28a745; 
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 15px;
+    max-width: 100%;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  input[type="text"], button {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  .card {
+    width: 80px;
+    height: 112px;
+  }
+
+  .card-pass-button {
+    padding: 6px;
+    font-size: 0.8rem;
+  }
+
+  .rules, .modal-content {
+    padding: 10px;
+  }
+
+  .rules h2, .modal-content h2 {
+    font-size: 1.3rem;
+  }
+
+  .rules li, .modal-content li {
+    font-size: 0.9rem;
+  }
+
+  #players, #cards {
+    text-align: center;
+  }
+
+  .card-container {
+    margin: 5px;
+  }
+}
+
+@media (max-width: 400px) {
+  .card {
+    width: 60px;
+    height: 84px;
+  }
+
+  .card-pass-button {
+    font-size: 0.7rem;
+    padding: 5px;
+  }
+
+  .modal-content {
+    width: 95%;
+  }
+}

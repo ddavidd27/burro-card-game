@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Burro Game</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body class="game">
+  <div class="container">
+    <h1>Burro Card Game</h1>
+    <p>Room Number: <span id="roomNumber"></span></p>
+    <button id="rulesButton">Show Rules</button>
+    <div id="players"><h2>Players</h2></div>
+    <div id="cards"><h2>Your Cards</h2></div>
+    <button id="startButton">Start Playing</button>
+    <button id="burroButton" disabled>Shout Burro!</button>
+    <div id="status"></div>
+  </div>
+  <div id="rulesModal" class="modal">
+    <div class="modal-content">
+      <span id="closeRules" class="close">&times;</span>
+      <h2>How to Play Burro</h2>
+      <ul>
+        <li><strong>Goal</strong>: Be the last player standing by avoiding the word "BURRO".</li>
+        <li><strong>Players</strong>: 2 to 10 can play.</li>
+        <li><strong>Cards</strong>: Each player starts with 4 cards (e.g., 7 of espadas).</li>
+        <li><strong>Passing</strong>: Take turns passing one card to the next player. You can pass the card you just got, unless you have 5 cards.</li>
+        <li><strong>Burro</strong>: If someone has 4 cards of the same rank (e.g., four 7s), everyone can click "Shout Burro!".</li>
+        <li><strong>Scoring</strong>: The slowest to shout gets a letter (B, U, R, R, O). Spell "BURRO" and you’re out!</li>
+        <li><strong>Winning</strong>: The last player without "BURRO" wins!</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
