@@ -10,6 +10,10 @@ Scan the QR code or visit the game:
 
 **URL**: https://s25-websocket-ddavidd27.onrender.com
 
+## Screenshot
+
+![Burro Card Game Screenshot](./public/screenshot.png)
+
 ## About
 
 Burro is a lively online game where players pass Spanish cards (e.g., 7 de espadas) and shout "Burro!" to score points. Features include:
